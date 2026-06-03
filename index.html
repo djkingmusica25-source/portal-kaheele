@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PORTAL DE DESCARGAS | KAHEELE RECORD'S</title>
+    <style>
+        :root {
+            /* Colores tomados directamente de tu diseño */
+            --bg-dark: #07030d;
+            --accent-orange: #ff6a00;
+            --text-main: #ffffff;
+            --text-muted: #a39cb0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', -apple-system, Roboto, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-main);
+            padding: 20px;
+        }
+
+        /* Tarjeta principal con el degradado exacto de tu diseño (Morado a Naranja abajo) */
+        .portal-card {
+            background: linear-gradient(180deg, #4c1193 0%, #17072b 65%, #3d1403 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px; /* Esquinas bien redondeadas como tu imagen */
+            padding: 60px 45px;
+            width: 100%;
+            max-width: 460px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Contenedor del Logo */
+        .logo-container {
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 140px;
+            height: auto;
+        }
+
+        .brand-logo {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Nombre del Sello en Mayúsculas, Negrita e Itálica */
+        .brand-title {
+            font-size: 1.4rem;
+            font-weight: 900;
+            font-style: italic;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 60px;
+            color: var(--text-main);
+        }
+
+        /* Subtítulos centrales */
+        .system-text {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .portal-text {
+            font-size: 0.9rem;
+            font-weight: 900;
+            font-style: italic;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        /* Caja oscura interna para los créditos del track */
+        .track-info-box {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            padding: 22px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            margin-bottom: 20px;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .track-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .track-credits {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+        }
+
+        /* Botón de Descarga del ZIP con efecto de cristal oscuro */
+        .btn-download {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 16px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 45px;
+        }
+
+        .btn-download:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* Pie de página idéntico al tuyo */
+        footer {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 0.3px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contenedor calcado de Sin título-1.jpg -->
+    <div class="portal-card">
+        
+        <!-- Logo Oficial -->
+        <div class="logo-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Kaheele_WEB_LOGO.png" alt="Kaheele Logo" class="brand-logo">
+        </div>
+
+        <!-- Título en cursiva -->
+        <h1 class="brand-title">KAHEELE RECORD'S</h1>
+
+        <!-- Textos centrales del sistema -->
+        <p class="system-text">HQ AUDIO DELIVERY SYSTEM</p>
+        <p class="portal-text">PORTAL DE DESCARGAS</p>
+
+        <!-- Caja de Créditos del Track -->
+        <div class="track-info-box">
+            <h2 class="track-title">COSTEÑITO</h2>
+            <p class="track-credits">Tekka, Kaheele On The Beats</p>
+        </div>
+
+        <!-- Botón de Descarga Stems -->
+        <a href="REMPLAZAR_CON_ENLACE_ZIP" class="btn-download" download>
+            Descargar Stems del Track (.ZIP)
+        </a>
+
+        <!-- Footer -->
+        <footer>
+            &copy;2026 Kaheele. Powered by Kaheele Record's.
+        </footer>
+    </div>
+
+</body>
+</html>
