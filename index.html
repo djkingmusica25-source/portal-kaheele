@@ -27,9 +27,10 @@
             align-items: center;
             color: var(--text-main);
             padding: 20px;
+            overflow-x: hidden;
         }
 
-        /* Tarjeta principal con el degradado de tu diseño */
+        /* Tarjeta principal */
         .portal-card {
             background: linear-gradient(180deg, #4c1193 0%, #17072b 65%, #3d1403 100%);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -42,6 +43,16 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .portal-card.workspace-active {
+            max-width: 95vw;
+            width: 1300px;
+            height: 88vh;
+            padding: 0;
+            border-radius: 24px;
+            overflow: hidden;
         }
 
         .logo-container {
@@ -120,7 +131,7 @@
             font-weight: 500;
         }
 
-        /* Contenedor de la Lista de Resultados */
+        /* Resultados */
         .results-list {
             width: 100%;
             display: flex;
@@ -129,7 +140,6 @@
             margin-bottom: 30px;
         }
 
-        /* Item de la lista (Oculto por defecto) */
         .file-item {
             display: none;
             width: 100%;
@@ -141,21 +151,35 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Caja de créditos basada en tu diseño */
         .track-info-box {
             width: 100%;
             background: rgba(0, 0, 0, 0.55);
-            padding: 22px;
+            padding: 25px 22px;
             border-radius: 24px 24px 0 0;
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-bottom: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* NUEVO: Contenedor para fotos de perfil de los artistas */
+        .artist-avatar {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-orange);
+            object-fit: cover;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            background-color: #222;
         }
 
         .track-title {
             font-size: 1.3rem;
             font-weight: 700;
             color: var(--text-main);
-            margin-bottom: 6px;
+            margin-bottom: 2px;
         }
 
         .track-credits {
@@ -164,7 +188,6 @@
             color: var(--accent-orange);
         }
 
-        /* Botón de Descarga / Enlace a Samply */
         .btn-download {
             width: 100%;
             background: rgba(255, 255, 255, 0.08);
@@ -179,6 +202,7 @@
             display: inline-block;
             transition: all 0.3s ease;
             cursor: pointer;
+            text-align: center;
         }
 
         .btn-download:hover {
@@ -186,7 +210,6 @@
             border-color: rgba(255, 255, 255, 0.2);
         }
 
-        /* Mensaje de error */
         .no-results {
             display: none;
             font-size: 0.85rem;
@@ -195,7 +218,6 @@
             font-style: italic;
         }
 
-        /* Botón Volver Atrás */
         .btn-back {
             width: 100%;
             background: transparent;
@@ -218,6 +240,96 @@
             border-color: rgba(255, 255, 255, 0.15);
         }
 
+        /* ========================================================
+           ENTORNO DEL WORKSPACE MODIFICADO PARA LA FOTO
+           ======================================================== */
+        .artist-workspace {
+            display: none;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .workspace-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 15px 25px;
+            background: rgba(0, 0, 0, 0.4);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .workspace-identity {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Foto pequeña para la cabecera superior del hub */
+        .workspace-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1.5px solid var(--accent-orange);
+            object-fit: cover;
+        }
+
+        .workspace-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-transform: uppercase;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-close-workspace {
+            background: rgba(255, 106, 0, 0.15);
+            color: var(--accent-orange);
+            border: 1px solid rgba(255, 106, 0, 0.4);
+            padding: 8px 18px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .btn-close-workspace:hover {
+            background: var(--accent-orange);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(255, 106, 0, 0.4);
+            border-color: var(--accent-orange);
+        }
+
+        .workspace-body-content {
+            width: 100%;
+            flex-grow: 1;
+            position: relative;
+            background: #000;
+        }
+
+        .samply-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .direct-download-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            gap: 20px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(76, 17, 147, 0.2) 0%, rgba(7, 3, 13, 0.6) 100%);
+        }
+
         footer {
             font-size: 0.75rem;
             color: rgba(255, 255, 255, 0.5);
@@ -227,85 +339,210 @@
 </head>
 <body>
 
-    <div class="portal-card">
+    <div class="portal-card" id="mainCard">
         
-        <!-- Logo Oficial -->
-        <div class="logo-container">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Kaheele_WEB_LOGO.png" alt="Kaheele Logo" class="brand-logo">
+        <!-- Elementos del Buscador Principal -->
+        <div id="portalSearchElements" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+            <div class="logo-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Kaheele_WEB_LOGO.png" alt="Kaheele Logo" class="brand-logo">
+            </div>
+            <h1 class="brand-title">KAHEELE RECORD'S</h1>
+            <p class="system-text">HQ AUDIO DELIVERY SYSTEM</p>
+            <p class="portal-text">PORTAL DE DESCARGAS</p>
+
+            <div class="search-container">
+                <input type="text" id="artistSearch" class="search-input" placeholder="Ingresa el nombre del artista...">
+                <p id="noResultsMessage" class="no-results">Nombre incorrecto o sin archivos asignados</p>
+            </div>
         </div>
 
-        <h1 class="brand-title">KAHEELE RECORD'S</h1>
-
-        <p class="system-text">HQ AUDIO DELIVERY SYSTEM</p>
-        <p class="portal-text">PORTAL DE DESCARGAS</p>
-
-        <!-- BANDEJA DE BÚSQUEDA -->
-        <div class="search-container">
-            <input type="text" id="artistSearch" class="search-input" placeholder="Ingresa el nombre del artista...">
-            <p id="noResultsMessage" class="no-results">Nombre incorrecto o sin archivos asignados</p>
-        </div>
-
-        <!-- LISTA DE ARCHIVOS -->
+        <!-- LISTA DE ARTISTAS CON FILTRO (REEMPLAZA LAS URLS POR LAS IMÁGENES REALES) -->
         <div class="results-list" id="filesList">
             
-            <!-- ARTISTA 1: Teeka (Nombre Corregido y Descarga Directa) -->
+            <!-- Teeka -->
             <div class="file-item" data-artist="teeka">
                 <div class="track-info-box">
+                    <img src="https://via.placeholder.com/150" alt="Teeka" class="artist-avatar">
                     <h2 class="track-title">COSTEÑITO</h2>
                     <p class="track-credits">Teeka, Kaheele On The Beats</p>
                 </div>
-                <a href="https://www.dropbox.com/scl/fi/t8txtzr5laami2h1jq4if/Kaheele_Coste-ito_Tekka.rar?rlkey=vu5k4yqoth65kx3qqe50hxqnq&st=86bvt8zm&dl=1" class="btn-download" download>
-                    Descargar Stems del Track (.RAR)
-                </a>
+                <button onclick="openArtistWorkspace('Teeka', 'direct', 'https://www.dropbox.com/scl/fi/t8txtzr5laami2h1jq4if/Kaheele_Coste-ito_Tekka.rar?rlkey=vu5k4yqoth65kx3qqe50hxqnq&st=86bvt8zm&dl=1', 'https://via.placeholder.com/150')" class="btn-download">
+                    Ver Entrega de Proyecto
+                </button>
             </div>
 
-            <!-- ARTISTA 2: Caled Torres -->
-            <div class="file-item" data-artist="caled torres">
+            <!-- Jey Diem -->
+            <div class="file-item" data-artist="jey diem">
                 <div class="track-info-box">
-                    <h2 class="track-title">LIBRERÍA PERSONAL</h2>
-                    <p class="track-credits">Caled Torres, KR Studios</p>
+                    <img src="https://via.placeholder.com/150" alt="Jey Diem" class="artist-avatar">
+                    <h2 class="track-title">PROYECTOS DISPONIBLES</h2>
+                    <p class="track-credits">Jey Diem Artist, Kaheele Record's</p>
                 </div>
-                <a href="https://samply.app/p/i0NY9axkkViMCcegLmMo" target="_blank" class="btn-download">
-                    Abrir Portal de Audio (Samply)
-                </a>
+                <button onclick="openArtistWorkspace('Jey Diem', 'samply', 'https://samply.app/p/rUcP9reB75hB7nzas6wH', 'https://via.placeholder.com/150')" class="btn-download">
+                    Abrir Workspace Seguro
+                </button>
             </div>
 
-            <!-- ARTISTA 3: CAJAR -->
-            <div class="file-item" data-artist="cajar">
-                <div class="track-info-box">
-                    <h2 class="track-title">PROYECTOS OFICIALES</h2>
-                    <p class="track-credits">CAJAR Artist, Kaheele Record's</p>
-                </div>
-                <a href="https://samply.app/p/BPWias7yUxemKrR9l2Nv" target="_blank" class="btn-download">
-                    Abrir Portal de Audio (Samply)
-                </a>
-            </div>
-
-            <!-- ARTISTA 4: Riox -->
+            <!-- Riox -->
             <div class="file-item" data-artist="riox">
                 <div class="track-info-box">
+                    <img src="https://via.placeholder.com/150" alt="Riox" class="artist-avatar">
                     <h2 class="track-title">MASTER TRACKS</h2>
                     <p class="track-credits">Riox Artist, Kaheele Record's</p>
                 </div>
-                <a href="https://samply.app/p/FCm9qZWNpYUCgRBL16ml" target="_blank" class="btn-download">
-                    Abrir Portal de Audio (Samply)
-                </a>
+                <button onclick="openArtistWorkspace('Riox', 'samply', 'https://samply.app/p/FCm9qZWNpYUCgRBL16ml', 'https://via.placeholder.com/150')" class="btn-download">
+                    Abrir Workspace Seguro
+                </button>
+            </div>
+
+            <!-- Cajar -->
+            <div class="file-item" data-artist="cajar">
+                <div class="track-info-box">
+                    <img src="https://via.placeholder.com/150" alt="Cajar" class="artist-avatar">
+                    <h2 class="track-title">PROYECTOS OFICIALES</h2>
+                    <p class="track-credits">CAJAR Artist, Kaheele Record's</p>
+                </div>
+                <button onclick="openArtistWorkspace('Cajar', 'samply', 'https://samply.app/p/BPWias7yUxemKrR9l2Nv', 'https://via.placeholder.com/150')" class="btn-download">
+                    Abrir Workspace Seguro
+                </button>
+            </div>
+
+            <!-- Caled Torres -->
+            <div class="file-item" data-artist="caled torres">
+                <div class="track-info-box">
+                    <img src="https://via.placeholder.com/150" alt="Caled Torres" class="artist-avatar">
+                    <h2 class="track-title">LIBRERÍA PERSONAL</h2>
+                    <p class="track-credits">Caled Torres, KR Studios</p>
+                </div>
+                <button onclick="openArtistWorkspace('Caled Torres', 'samply', 'https://samply.app/p/i0NY9axkkViMCcegLmMo', 'https://via.placeholder.com/150')" class="btn-download">
+                    Abrir Workspace Seguro
+                </button>
+            </div>
+
+            <!-- Matt Bohn -->
+            <div class="file-item" data-artist="matt bohn">
+                <div class="track-info-box">
+                    <img src="https://via.placeholder.com/150" alt="Matt Bohn" class="artist-avatar">
+                    <h2 class="track-title">PROYECTOS ASIGNADOS</h2>
+                    <p class="track-credits">Matt Bohn Artist, Kaheele Record's</p>
+                </div>
+                <button onclick="openArtistWorkspace('Matt Bohn', 'samply', 'https://samply.app/p/awD8Of5Xdadqm8un9HyK', 'https://via.placeholder.com/150')" class="btn-download">
+                    Abrir Workspace Seguro
+                </button>
+            </div>
+
+            <!-- Bendecido Music -->
+            <div class="file-item" data-artist="bendecido music">
+                <div class="track-info-box">
+                    <img src="https://via.placeholder.com/150" alt="Bendecido Music" class="artist-avatar">
+                    <h2 class="track-title">TRACK DELIVERIES</h2>
+                    <p class="track-credits">Bendecido Music, Kaheele Record's</p>
+                </div>
+                <button onclick="openArtistWorkspace('Bendecido Music', 'samply', 'https://samply.app/p/dDHwp4wNXNKWa9ekPbIX', 'https://via.placeholder.com/150')" class="btn-download">
+                    Abrir Workspace Seguro
+                </button>
+            </div>
+
+            <!-- Gyga -->
+            <div class="file-item" data-artist="gyga">
+                <div class="track-info-box">
+                    <img src="https://via.placeholder.com/150" alt="Gyga" class="artist-avatar">
+                    <h2 class="track-title">AUDIO RELEASES</h2>
+                    <p class="track-credits">Gyga Artist, Kaheele Record's</p>
+                </div>
+                <button onclick="openArtistWorkspace('Gyga', 'samply', 'https://samply.app/p/mJZJygKH8L4iMqQqoeTv?si=rpR7NPwabBZG3q2Tvy1RmAUnZSl2', 'https://via.placeholder.com/150')" class="btn-download">
+                    Abrir Workspace Seguro
+                </button>
+            </div>
+
+            <!-- CrisDave -->
+            <div class="file-item" data-artist="crisdave">
+                <div class="track-info-box">
+                    <img src="https://via.placeholder.com/150" alt="CrisDave" class="artist-avatar">
+                    <h2 class="track-title">PROYECTOS DE AUDIO</h2>
+                    <p class="track-credits">CRISDAVE Artist, Kaheele Record's</p>
+                </div>
+                <button onclick="openArtistWorkspace('CrisDave', 'samply', 'https://samply.app/p/YmIHMqW0T3DK3qCHsMx3', 'https://via.placeholder.com/150')" class="btn-download">
+                    Abrir Workspace Seguro
+                </button>
+            </div>
+
+            <!-- Koke -->
+            <div class="file-item" data-artist="koke">
+                <div class="track-info-box">
+                    <img src="https://via.placeholder.com/150" alt="Koke" class="artist-avatar">
+                    <h2 class="track-title">STUDIO MASTERS</h2>
+                    <p class="track-credits">Koke Artist, Kaheele Record's</p>
+                </div>
+                <button onclick="openArtistWorkspace('Koke', 'samply', 'https://samply.app/p/0DOcS3wC6gG3t8jBe7hW?si=rpR7NPwabBZG3q2Tvy1RmAUnZSl2', 'https://via.placeholder.com/150')" class="btn-download">
+                    Abrir Workspace Seguro
+                </button>
+            </div>
+
+            <!-- Zundell -->
+            <div class="file-item" data-artist="zundell">
+                <div class="track-info-box">
+                    <img src="https://via.placeholder.com/150" alt="Zundell" class="artist-avatar">
+                    <h2 class="track-title">AUDIO STEMS</h2>
+                    <p class="track-credits">Zundell Artist, Kaheele Record's</p>
+                </div>
+                <button onclick="openArtistWorkspace('Zundell', 'samply', 'https://samply.app/p/wWiKHdL4n4IFIP21JdLo?si=rpR7NPwabBZG3q2Tvy1RmAUnZSl2', 'https://via.placeholder.com/150')" class="btn-download">
+                    Abrir Workspace Seguro
+                </button>
+            </div>
+
+            <!-- TIIAAN -->
+            <div class="file-item" data-artist="tiiaan">
+                <div class="track-info-box">
+                    <img src="https://via.placeholder.com/150" alt="TIIAAN" class="artist-avatar">
+                    <h2 class="track-title">DIGITAL RELEASES</h2>
+                    <p class="track-credits">Tiiaan Artist, Kaheele Record's</p>
+                </div>
+                <button onclick="openArtistWorkspace('TIIAAN', 'samply', 'https://samply.app/p/zEeUTwI7FYUw1lNtsMKQ?si=rpR7NPwabBZG3q2Tvy1RmAUnZSl2', 'https://via.placeholder.com/150')" class="btn-download">
+                    Abrir Workspace Seguro
+                </button>
+            </div>
+
+            <!-- YTHAM BS -->
+            <div class="file-item" data-artist="ytham bs">
+                <div class="track-info-box">
+                    <img src="https://via.placeholder.com/150" alt="YTHAM BS" class="artist-avatar">
+                    <h2 class="track-title">PROYECTOS COMPLETOS</h2>
+                    <p class="track-credits">YTHAM BS Artist, Kaheele Record's</p>
+                </div>
+                <button onclick="openArtistWorkspace('YTHAM BS', 'samply', 'https://samply.app/p/ypeOolp2D2M8wLIch25w?si=rpR7NPwabBZG3q2Tvy1RmAUnZSl2', 'https://via.placeholder.com/150')" class="btn-download">
+                    Abrir Workspace Seguro
+                </button>
             </div>
 
         </div>
 
+        <!-- ENTORNO DEL WORKSPACE MODIFICADO -->
+        <div class="artist-workspace" id="artistWorkspace">
+            <div class="workspace-header">
+                <div class="workspace-identity">
+                    <!-- Foto dinámica cargada por JS -->
+                    <img id="activeArtistAvatar" src="" alt="Artist" class="workspace-avatar">
+                    <span class="workspace-title" id="activeArtistName">KAHEELE HUB</span>
+                </div>
+                <button class="btn-close-workspace" onclick="closeArtistWorkspace()">← Volver al Portal</button>
+            </div>
+            
+            <div class="workspace-body-content" id="workspaceContent"></div>
+        </div>
+
         <!-- Botón Volver Atrás principal -->
-        <a href="https://kaheele.vercel.app/" class="btn-back">
+        <a href="https://kaheele.vercel.app/" class="btn-back" id="generalBackButton">
             Volver Atrás
         </a>
 
-        <footer style="margin-top: 40px;">
+        <footer style="margin-top: 40px;" id="portalFooter">
             &copy;2026 Kaheele. Powered by Kaheele Record's.
         </footer>
     </div>
 
-    <!-- SCRIPT CORREGIDO PARA COINCIDENCIA EXACTA -->
     <script>
+        // FILTRADO DINÁMICO
         document.getElementById('artistSearch').addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase().trim();
             const fileItems = document.querySelectorAll('.file-item');
@@ -315,7 +552,6 @@
             fileItems.forEach(item => {
                 const artistData = item.getAttribute('data-artist').toLowerCase();
                 
-                // Comprobación de coincidencia exacta
                 if (searchTerm === artistData) {
                     item.style.display = 'block';
                     anyMatch = true;
@@ -330,6 +566,74 @@
                 noResults.style.display = 'none';
             }
         });
+
+        // CONTROLADOR DE WORKSPACE INTEGRADO
+        function openArtistWorkspace(artistName, type, url, imgUrl) {
+            const mainCard = document.getElementById('mainCard');
+            const searchElements = document.getElementById('portalSearchElements');
+            const filesList = document.getElementById('filesList');
+            const generalBackBtn = document.getElementById('generalBackButton');
+            const portalFooter = document.getElementById('portalFooter');
+            
+            const workspace = document.getElementById('artistWorkspace');
+            const workspaceTitle = document.getElementById('activeArtistName');
+            const workspaceAvatar = document.getElementById('activeArtistAvatar');
+            const workspaceContent = document.getElementById('workspaceContent');
+
+            // Ocultar buscador inicial
+            searchElements.style.display = 'none';
+            filesList.style.display = 'none';
+            generalBackBtn.style.display = 'none';
+            portalFooter.style.display = 'none';
+
+            // Activar visualización completa del Hub
+            mainCard.classList.add('workspace-active');
+            workspaceTitle.innerText = `KAHEELE HUB // ${artistName}`;
+            workspaceAvatar.src = imgUrl; // Carga la miniatura en la cabecera
+
+            // Inserción de contenidos
+            if (type === 'samply') {
+                workspaceContent.innerHTML = `<iframe src="${url}" class="samply-frame"></iframe>`;
+            } else if (type === 'direct') {
+                workspaceContent.innerHTML = `
+                    <div class="direct-download-container">
+                        <img src="${imgUrl}" alt="${artistName}" style="width:130px; height:130px; border-radius:50%; border:3px solid var(--accent-orange); object-fit:cover; margin-bottom:10px; box-shadow:0 10px 25px rgba(0,0,0,0.6);">
+                        <h2 style="font-style:italic; font-size:1.6rem; letter-spacing:1px; text-transform:uppercase;">PROYECTO COMPLETO COMPRIMIDO</h2>
+                        <p style="color:var(--text-muted); font-size:0.95rem; text-transform:uppercase; letter-spacing:0.5px;">Tu descarga directa está lista para ser procesada sin salir del portal.</p>
+                        <a href="${url}" class="btn-download" style="border-radius:20px; max-width:320px; border:1px solid rgba(255,255,255,0.15);" download>
+                            INICIAR DESCARGA (.RAR)
+                        </a>
+                    </div>
+                `;
+            }
+
+            workspace.style.display = 'flex';
+        }
+
+        function closeArtistWorkspace() {
+            const mainCard = document.getElementById('mainCard');
+            const searchElements = document.getElementById('portalSearchElements');
+            const filesList = document.getElementById('filesList');
+            const generalBackBtn = document.getElementById('generalBackButton');
+            const portalFooter = document.getElementById('portalFooter');
+            
+            const workspace = document.getElementById('artistWorkspace');
+            const workspaceContent = document.getElementById('workspaceContent');
+            const searchInput = document.getElementById('artistSearch');
+
+            workspace.style.display = 'none';
+            workspaceContent.innerHTML = '';
+            mainCard.classList.remove('workspace-active');
+
+            searchElements.style.display = 'flex';
+            filesList.style.display = 'flex';
+            generalBackBtn.style.display = 'flex';
+            portalFooter.style.display = 'block';
+
+            searchInput.value = '';
+            const fileItems = document.querySelectorAll('.file-item');
+            fileItems.forEach(item => item.style.display = 'none');
+        }
     </script>
 
 </body>
